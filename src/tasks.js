@@ -22,6 +22,10 @@ exports.getTasks = (request, response) => {
         .catch(err => response.status(500).send(err))
 }
 
-// exports.updateTask = (request, response) => {
-
-// }
+exports.updateTask = (request, response) => {
+    const { taskId } = request.params
+    const isDone = request.body.isDoneconst db = connectDb();
+    db.collection('tasks').doc(taskId).update({done: isDone })
+        .then(doc => response.status(202).send(doc))
+        .catch(err => response.status(500).send(err));
+}
