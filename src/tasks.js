@@ -16,16 +16,18 @@ exports.getTasks = (request, response) => {
                 let task = doc.data();
                 task.id = doc.id;
                 return task; // we expect to return an empty array
-            })
+            });
             response.send(taskList);
         })
         .catch(err => response.status(500).send(err))
 }
 
 exports.updateTask = (request, response) => {
-    const { taskId } = request.params
-    const isDone = request.body.isDoneconst db = connectDb();
-    db.collection('tasks').doc(taskId).update({done: isDone })
+    const { taskId } = request.params;
+    const isDone = request.body.done;
+    db.collection('tasks')
+        .doc(taskId)
+        .update({done: isDone })
         .then(doc => response.status(202).send(doc))
         .catch(err => response.status(500).send(err));
 }

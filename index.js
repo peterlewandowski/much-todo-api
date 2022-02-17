@@ -1,6 +1,6 @@
 const express = require('express'); // import express ES5 style
 const cors = require('cors'); // allows cross origin resource sharing
-const { getTasks } = require('./src/tasks');
+const { createTask, getTasks, updateTask } = require('./src/tasks');
 const PORT = process.env.PORT || 3000; // establish a port to be used, check if there is an environmental variable which has already set a port to be used
 
 const app = express(); // creates an express app
