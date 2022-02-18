@@ -1,7 +1,10 @@
 const { connectDb } = require('./connectDb');
 
 exports.createTask = (request, response) => {
-    const newTask = request.body;
+    const newTask = {
+        task: request.body.task,
+        done: false
+    };
     const db = connectDb();
     db.collection('tasks').add(newTask)
         .then(doc => response.status(201).send(doc.id))
