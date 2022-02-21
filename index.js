@@ -10,7 +10,7 @@ app.use(express.json());
 // Routes
 app.post('/tasks', createTask); // we can test if it works with POSTMAN, create a test task...
 app.get('/tasks', getTasks);
-// app.patch('/tasks/:taskId', updateTask); // because of the `:` it takes an actual task Id in the path
+app.patch('/tasks/:taskId', updateTask); // because of the `:` it takes an actual task Id in the path
 
 
 app.listen(PORT,() => {

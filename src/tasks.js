@@ -28,6 +28,7 @@ exports.getTasks = (request, response) => {
 exports.updateTask = (request, response) => {
     const { taskId } = request.params;
     const isDone = request.body.done;
+    const db = connectDb()
     db.collection('tasks')
         .doc(taskId)
         .update({done: isDone })
