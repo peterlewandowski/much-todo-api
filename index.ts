@@ -1,7 +1,7 @@
-const express = require('express'); // import express ES5 style
-const cors = require('cors'); // allows cross origin resource sharing
-const { createTask, getTasks, updateTask } = require('./src/tasks');
-const PORT = process.env.PORT || 3000; // establish a port to be used, check if there is an environmental variable which has already set a port to be used
+import express from 'express';
+import cors from 'cors';
+import { getTasks, createTask, updateTask } from './src/tasks'
+const PORT = process.env.PORT || 3000;
 
 const app = express(); // creates an express app
 app.use(cors()); // hopefully the two `cors` lines will do what we need
@@ -16,3 +16,4 @@ app.patch('/tasks/:taskId', updateTask); // because of the `:` it takes an actua
 app.listen(PORT,() => {
     console.log('Listening on Port: ', PORT)
 });
+

@@ -1,6 +1,7 @@
-const { connectDb } = require('./connectDb');
+import { connectDb } from './connectDb';
+import { Request, Response } from 'express';
 
-exports.createTask = (request, response) => {
+export const createTask = (request: Request, response: Response) => {
     const newTask = {
         task: request.body.task,
         done: false
@@ -11,7 +12,7 @@ exports.createTask = (request, response) => {
         .catch(err => response.status(500).send(err));
 }
 
-exports.getTasks = (request, response) => {
+export const getTasks = (request: Request, response: Response) => {
     const db = connectDb();
     db.collection('tasks').get() // this is how we will GET our `tasks` collection from our db
         .then(snapshot => { // capturing `tasks` in the snapshot, getting All the tasks
@@ -25,7 +26,7 @@ exports.getTasks = (request, response) => {
         .catch(err => response.status(500).send(err))
 }
 
-exports.updateTask = (request, response) => {
+export const updateTask = (request: Request, response: Response) => {
     const { taskId } = request.params;
     const isDone = request.body.done;
     const db = connectDb()
